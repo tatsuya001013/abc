@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-</head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>運勢占い</title>
+<link rel="stylesheet" href="styles.css"> </head>
 <body>
 <div class="container">
 <label for="birthday">生年月日を入力してください：</label>
@@ -14,7 +17,8 @@
 <option value="money">金運</option>
 </select>
 <br>
+<button onclick="checkFortune()">運勢をチェック</button>
+<div id="result-output"></div>
 </div>
-<script src="app.js"></script>
-</body>
+<script src="app.js"></script> </body>
 </html> 
