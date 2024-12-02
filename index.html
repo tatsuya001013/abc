@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- ビューポート設定を追加 -->
+<title>運勢チェッカー</title>
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+    
+<body>
+    <div class="container">
+        
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="pyscript.html">PyScriptVer</a>
+        <a href="cluster_analysis.html">ClusterAnalysis</a>
+    </nav>
+
+        <br>
+        <label for="colour-select">好きな色を選んでください：</label>
+        <select id="colour-select">
+            <option value="黒">黒</option>
+            <option value="白">白</option>
+            <option value="オレンジ">オレンジ</option>
+        </select>
+        <br>
+        <label for="number-input">好きな数字を選んでください（0、1、2）※半角数値で入力：</label>
+        <input type="number" id="number-input">
+        <br>
+        <button onclick="checkFortune()">運勢をチェック</button>
+        <p id="result-output"></p>
+        
+    <nav>
+     <a href="index.html">Home</a>
+      <a href="pyscript.html">PyScriptVer</a>
+      <a href="cluster_analysis.html">ClusterAnalysis</a>
+    </nav>
+    </div>    
+
+    <script src="app.js"></script>
+
+</body>
+</html>
