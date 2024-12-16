@@ -1,23 +1,31 @@
-if (!birthday) {
+// This function handles the fortune checking when the button is clicked
+function checkFortune() {
+    const birthday = document.getElementById("birthday").value;  // Get the user's birthday
+    const question = document.getElementById("question").value;  // Get the selected question (love, work, or money)
+
+    // Validate if a birthdate is entered
+    if (!birthday) {
         alert("生年月日を入力してください！");
         return;
     }
 
-   
+    // Calculate the user's age
     const currentDate = new Date();
     const birthDate = new Date(birthday);
     let age = currentDate.getFullYear() - birthDate.getFullYear();
     const month = currentDate.getMonth() + 1; // months are zero-indexed
     const day = currentDate.getDate();
 
+    // Adjust the age if the birthday hasn't occurred yet this year
     if (month < birthDate.getMonth() + 1 || (month === birthDate.getMonth() + 1 && day < birthDate.getDate())) {
         age--;
     }
 
-   
+    // Call the getFortune function to get the user's fortune
     const fortune = getFortune(age, question);
 
-   const resultElement = document.getElementById("result-output");
+    // Output the result to the HTML
+    const resultElement = document.getElementById("result-output");
     resultElement.innerHTML = `
         <h3>あなたの運勢</h3>
         <p>年齢: ${age}歳</p>
@@ -26,7 +34,7 @@ if (!birthday) {
     `;
 }
 
-
+// This function generates the fortune based on age and selected question
 function getFortune(age, question) {
     const fortunes = {
         love: [
@@ -46,9 +54,11 @@ function getFortune(age, question) {
         ],
     };
 
-  
+    // Return a fortune based on the selected category and the user's age
     return fortunes[question][age % fortunes[question].length];
 }
+
+// This function returns a label for the selected category
 function getQuestionLabel(question) {
     switch (question) {
         case 'love': return "恋愛";
