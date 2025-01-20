@@ -5,7 +5,7 @@ function checkFortune() {
 
     // Validate if a birthdate is entered
     if (!birthday) {
-        alert("生年月日を入力してください！");
+        alert("今日の日にちを入力してください！");
         return;
     }
 
