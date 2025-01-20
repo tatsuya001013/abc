@@ -1,25 +1,84 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>運勢占い</title>
-<link rel="stylesheet" href="styles.css"> </head>
+<style>
+       body {
+           font-family: Arial, sans-serif;
+           margin: 20px;
+       }
+       .container {
+           max-width: 500px;
+           margin: 0 auto;
+       }
+       .input-group {
+           margin-bottom: 15px;
+       }
+       label {
+           font-weight: bold;
+           display: block;
+           margin-bottom: 5px;
+       }
+       select, input[type="date"] {
+           width: 100%;
+           padding: 8px;
+           font-size: 16px;
+           border-radius: 4px;
+           border: 1px solid #ccc;
+       }
+       button {
+           width: 100%;
+           padding: 10px;
+           font-size: 18px;
+           background-color: #4CAF50;
+           color: white;
+           border: none;
+           border-radius: 4px;
+           cursor: pointer;
+       }
+       button:hover {
+           background-color: #45a049;
+       }
+       #result-output {
+           margin-top: 20px;
+           padding: 15px;
+           background-color: #f9f9f9;
+           border: 1px solid #ddd;
+           border-radius: 4px;
+       }
+       #result-output h3 {
+           margin: 0 0 10px 0;
+       }
+       #result-output p {
+           margin: 5px 0;
+       }
+</style>
+</head>
 <body>
 <div class="container">
-<label for="birthday">生年月日を入力してください：</label>
-<input type="date" id="birthday">
-<br>
-<label for="question">今日の運勢を知りたい項目を選んでください：</label>
+<h1>運勢占い</h1>
+<!-- 誕生日の入力 -->
+<div class="input-group">
+<label for="birthday">生年月日を入力してください:</label>
+<input type="date" id="birthday" name="birthday">
+</div>
+<!-- 質問の選択 -->
+<div class="input-group">
+<label for="question">質問を選んでください:</label>
 <select id="question">
 <option value="love">恋愛</option>
 <option value="work">仕事</option>
 <option value="money">金運</option>
 </select>
-<br>
-<button onclick="checkFortune()">運勢をチェック</button>
+</div>
+<!-- 占い結果を表示するボタン -->
+<button onclick="checkFortune()">運勢を見る</button>
+<!-- 結果を表示する領域 -->
 <div id="result-output"></div>
 </div>
-<script src="app.js"></script> </body>
+<!-- 外部JSファイルを読み込む -->
+<script src="app.js"></script>
+</body>
 </html>
- 
