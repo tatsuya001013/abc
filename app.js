@@ -1,9 +1,4 @@
-// This function handles the fortune checking when the button is clicked
-
 document.getElementById("fortuneButton").addEventListener("click", function() {
-
-    // Clear previous error and result
-
     document.getElementById("error-message").style.display = "none";
 
     document.getElementById("result-output").style.display = "none";
@@ -14,8 +9,6 @@ document.getElementById("fortuneButton").addEventListener("click", function() {
 
     const question = document.getElementById("question").value;  // Get the selected question (love, work, or money)
 
-    // Validate if a birthdate is entered
-
     if (!birthday) {
 
         displayError("生年月日を入力してください！");
@@ -24,7 +17,7 @@ document.getElementById("fortuneButton").addEventListener("click", function() {
 
     }
 
-    // Calculate the user's age
+  
 
     const currentDate = new Date();
 
@@ -36,7 +29,6 @@ document.getElementById("fortuneButton").addEventListener("click", function() {
 
     const day = currentDate.getDate();
 
-    // Adjust the age if the birthday hasn't occurred yet this year
 
     if (month < birthDate.getMonth() + 1 || (month === birthDate.getMonth() + 1 && day < birthDate.getDate())) {
 
@@ -44,11 +36,9 @@ document.getElementById("fortuneButton").addEventListener("click", function() {
 
     }
 
-    // Call the getFortune function to get the user's fortune
 
     const fortune = getFortune(age, question);
 
-    // Output the result to the HTML
 
     setTimeout(() => {
 
@@ -69,8 +59,6 @@ document.getElementById("fortuneButton").addEventListener("click", function() {
     }, 1000);  // Simulating network delay
 
 });
-
-// This function generates the fortune based on age and selected question
 
 function getFortune(age, question) {
 
@@ -120,13 +108,11 @@ function getFortune(age, question) {
 
     };
 
-    // Return a fortune based on the selected category and the user's age
 
     return fortunes[question][age % fortunes[question].length];
 
 }
 
-// This function returns a label for the selected category
 
 function getQuestionLabel(question) {
 
@@ -144,7 +130,7 @@ function getQuestionLabel(question) {
 
 }
 
-// Display error message
+
 
 function displayError(message) {
 
