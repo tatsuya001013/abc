@@ -1,24 +1,151 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>運勢占い</title>
-<link rel="stylesheet" href="styles.css"> </head>
+<style>
+       body {
+           font-family: Arial, sans-serif;
+           margin: 20px;
+       }
+       .container {
+           max-width: 500px;
+           margin: 0 auto;
+       }
+       .input-group {
+           margin-bottom: 15px;
+       }
+       label {
+           font-weight: bold;
+           display: block;
+           margin-bottom: 5px;
+       }
+       select, input[type="date"] {
+           width: 100%;
+           padding: 8px;
+           font-size: 16px;
+           border-radius: 4px;
+           border: 1px solid #ccc;
+       }
+       button {
+           width: 100%;
+           padding: 10px;
+           font-size: 18px;
+           background-color: #4CAF50;
+           color: white;
+           border: none;
+           border-radius: 4px;
+           cursor: pointer;
+       }
+       button:hover {
+           background-color: #45a049;
+       }
+       #result-output {
+           margin-top: 20px;
+           padding: 15px;
+           background-color: #f9f9f9;
+           border: 1px solid #ddd;
+           border-radius: 4px;
+       }
+       #result-output h3 {
+           margin: 0 0 10px 0;
+       }
+       #result-output p {
+           margin: 5px 0;
+       }
+</style>
+</head>
 <body>
 <div class="container">
-<label for="birthday">生年月日を入力してください：</label>
-<input type="date" id="birthday">
-<br>
-<label for="question">今日の運勢を知りたい項目を選んでください：</label>
+<h1>運勢占い</h1>
+<!-- 誕生日の入力 -->
+<div class="input-group">
+<label for="birthday">生年月日を入力してください:</label>
+<input type="date" id="birthday" name="birthday">
+</div>
+<!-- 質問の選択 -->
+<div class="input-group">
+<label for="question">質問を選んでください:</label>
 <select id="question">
 <option value="love">恋愛</option>
 <option value="work">仕事</option>
 <option value="money">金運</option>
 </select>
-<br>
-<button onclick="checkFortune()">運勢をチェック</button>
+</div>
+<!-- 占い結果を表示するボタン -->
+<button onclick="checkFortune()">運勢を見る</button>
+<!-- 結果を表示する領域 -->
 <div id="result-output"></div>
 </div>
-<script src="app.js"></script> </body>
-</html> 
+<script>
+       // JavaScriptコードをここに貼り付けます
+       function checkFortune() {
+           const birthday = document.getElementById("birthday").value;  // Get the user's birthday
+           const question = document.getElementById("question").value;  // Get the selected question (love, work, or money)
+           // Validate if a birthdate is entered
+           if (!birthday) {
+               alert("生年月日を入力してください！");
+               return;
+           }
+           // Calculate the user's age
+           const currentDate = new Date();
+           const birthDate = new Date(birthday);
+           let age = currentDate.getFullYear() - birthDate.getFullYear();
+           const month = currentDate.getMonth() + 1; // months are zero-indexed
+           const day = currentDate.getDate();
+           // Adjust the age if the birthday hasn't occurred yet this year
+           if (month < birthDate.getMonth() + 1 || (month === birthDate.getMonth() + 1 && day < birthDate.getDate())) {
+               age--;
+           }
+           // Call the getFortune function to get the user's fortune
+           const fortune = getFortune(age, question);
+           // Output the result to the HTML
+           const resultElement = document.getElementById("result-output");
+           resultElement.innerHTML = `
+<h3>あなたの運勢</h3>
+<p>年齢: ${age}歳</p>
+<p>質問: ${getQuestionLabel(question)}</p>
+<p>運勢: ${fortune}</p>
+           `;
+       }
+       // This function generates the fortune based on age and selected question
+       function getFortune(age, question) {
+           const fortunes = {
+               love: [
+                   "今日は素敵な出会いがあるかもしれません！",
+                   "恋愛運が少し低め。焦らずゆっくり進んで。",
+                   "恋愛運絶好調！大切な人との絆が深まります。",
+                   "恋愛運最悪！！今日は気になる人とは距離を取りましょう。",
+                   "恋愛運普通！！何気ない普通の日です。",
+               ],
+               work: [
+                   "仕事のチャンスが訪れるかも！積極的に行動を。",
+                   "今日は慎重に行動した方が良さそうです。",
+                   "良い成果が得られそう！一歩踏み出してみましょう。",
+                   "今日は最悪！！何をやっても失敗しそう、、、",
+                   "今日は普通！！平凡な日を過ごせそう！",
+               ],
+               money: [
+                   "お金に関する良いニュースがあるかもしれません。",
+                   "金運は安定。無駄な支出には注意。",
+                   "金運が不安定。計画的にお金を使うことをおすすめします。",
+                   "お金が大不安定。今日はギャンブルとかで大負けの予感、、、、",
+                   "お金が大出費。でもすごく良い出費になるかも！！",
+               ],
+           };
+           // Return a fortune based on the selected category and the user's age
+           return fortunes[question][age % fortunes[question].length];
+       }
+       // This function returns a label for the selected category
+       function getQuestionLabel(question) {
+           switch (question) {
+               case 'love': return "恋愛";
+               case 'work': return "仕事";
+               case 'money': return "金運";
+               default: return "未選択";
+           }
+       }
+</script>
+</body>
+</html>
